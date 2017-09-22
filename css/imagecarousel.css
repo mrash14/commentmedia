@@ -101,25 +101,6 @@
     right: 0;
 }
 
-.instagram-grid .instagram-col-1,
-.instagram-grid .instagram-col-2{
-    background-position: center center;
-    float: left;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
-}
-.instagram-grid .instagram-col-1{
-   -webkit-box-shadow: 0 0 0 4px rgba(255,255,255,1);
-    -moz-box-shadow: 0 0 0 4px rgba(255,255,255,1);
-    box-shadow: 0 0 0 4px rgba(255,255,255,1);
-}
-.instagram-grid .instagram-col-2{
--webkit-box-shadow: 0 0 0 4px rgba(255,255,255,1);
--moz-box-shadow: 0 0 0 4px rgba(255,255,255,1);
-box-shadow: 0 0 0 4px rgba(255,255,255,1);
-}
 .instagram-item-meta-user,
 .instagram-item-meta-likes{
     display: block;
@@ -240,12 +221,6 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
     color: yellow;
 
 }
-@media (min-width: 3000px){
-    .instagram-grid{
-        margin: 0 auto;
-    }
-}
-
 
 @media (max-width: 1200px){
     .instagram-modal .container{

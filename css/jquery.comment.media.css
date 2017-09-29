@@ -1,0 +1,450 @@
+@import url('icons.css');
+
+.noscroll{
+    overflow:  hidden;
+    position: fixed;
+    width: 100%;
+}
+
+.ui-loader { display: none; }
+
+.tx-pxa-social-feed{
+    position: relative;
+}
+.tx-pxa-social-feed .btn{
+  margin: 50px auto;
+  text-align: center;
+  width: auto;
+  display: inline-block;
+}
+.commentmedia-navigate {
+    font-size: 8rem;
+    color:  white;
+    cursor: pointer;
+    position: absolute;
+    width: 128px;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+}
+.commentmedia-navigate  .icons {
+    top: 50%;
+    display: block;
+    margin-top: -64px;
+    text-shadow: 1px 1px 3px black;
+}
+.commentmedia-navigate.arrow-right {
+    right: -128px;
+}
+.commentmedia-navigate.arrow-left {
+    left: -128px;
+}
+.commentmedia-navigate.disabled {
+    cursor: auto;
+    opacity: 0.3;
+}
+
+.commentmedia-item-meta{
+    background-color: #005293;
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    padding: 5px 10px;
+    padding-right: 15px;
+    color: #fff;
+    bottom: -40px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: bottom 0.2s;
+    -moz-transition: bottom 0.2s;
+    -webkit-transition:bottom 0.2s;
+    -o-transition: bottom 0.2s;
+}
+.commentmedia-item-meta .icon-heart{
+    top: 5px;
+    font-size: 24px;
+    color: red;
+    line-height: 20px;
+}
+.commentmedia-item-meta{
+    right: 0;
+}
+
+.commentmedia-item-meta-user,
+.commentmedia-item-meta-likes{
+    display: block;
+    float: left;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.commentmedia-item-meta-likes{
+    width: 40%
+
+}
+.commentmedia-item-meta-likes{
+    text-align: right;
+}
+.commentmedia-wrapper{
+    z-index: 1111;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(12,12,12,0.8);
+    width: 100vw;
+    height: 100%;
+}
+.commentmedia-wrapper .chip-box {
+	display: none;
+}
+.commentmedia-wrapper div {
+    box-sizing: padding-box;
+}
+.commentmedia-wrapper > div {
+	z-index: 2;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    width: auto;
+}
+.commentmedia-scrollbox {
+    display: block;
+    /* max-height - set by javascript */
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    background-color: black;
+}
+
+.commentmedia-modal .container{
+    padding: 0;
+    font-size: 18px;
+    color: #000;
+    position: relative;
+    border-radius: 2px;
+/*     padding-right: 334px; */
+    position: relative;
+    width: 930px;
+}
+.commentmedia-modal p{
+    font-size: 13px;
+    font-weight: normal;
+    max-height: 290px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    letter-spacing: 0.04em;
+
+}
+.commentmedia-modal a {
+    color: #005293;
+    font-weight: bold;
+    font-size: 19px;
+}
+.commentmedia-modal-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 334px;
+    bottom: 0;
+}
+.commentmedia-modal-image,
+.commentmedia-modal-image .img{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.commentmedia-modal-image .img{
+	max-width: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.commentmedia-modal-image .video,
+.commentmedia-modal-image .audio {
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+.commentmedia-modal-image .audio-seek {
+	width: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 40px;
+	z-index: 1;
+}
+.commentmedia-modal-location{
+    margin-top: -3px;
+    font-size: 16px;
+}
+.commentmedia-modal .tags{
+	margin: 2px 0 0 2px;
+	overflow: hidden;
+}
+.commentmedia-modal .tags a{
+	display: inline-block;
+	float: left;
+	padding: 4px 6px;
+	border-radius: 3px;
+	margin: 0 2px 2px 0;
+	background-color: #009;
+	text-decoration: none;
+	color: white;
+	font-size: 12px;
+}
+.commentmedia-modal .tags a::before {
+    content: '#';
+    display: inline-block;
+    padding: 0px 6px 0 0;
+    font: bold 16px/12px Georgia, serif;
+    margin: 3px 0px 0 0;
+    float: left;
+    color: #66F;
+}
+.commentmedia-modal .tags a:HOVER,
+.commentmedia-modal .tags a:ACTIVE{
+	color: #333;
+	background-color: #CCC
+}
+
+.commentmedia-item-chip{
+	float: left;
+	margin: 0 25px 0 0;
+	line-height: 25px;
+}
+.commentmedia-item-chip a {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 25px;
+    color: #777;
+}
+
+.commentmedia-item-modal-likes {
+	display: inline-block;
+    padding: 20px 0px 20px;
+    margin: 0 24px;
+    border-top: 1px solid #efefef;
+    position: relative;
+    min-height: 30px;
+    overflow: hidden;
+}
+.commentmedia-item-modal-likes .icons {
+    top: 3px;
+    font-size: 25px;
+    color: white;
+    float: left;
+    margin-right: 5px;
+    text-shadow: 0 0 3px black;
+}
+.icons.loading {
+	font-size: 0 !important;
+	background: url("../images/loading32.gif") center center no-repeat !important;
+	min-height: 25px !important;
+	min-width: 25px !important;
+}
+.commentmedia-item-slide {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.commentmedia-item-modal-likes .icon-heart.liked {
+	color: red;
+	text-shadow: none;
+}
+.commentmedia-item-modal-comments {
+    padding: 20px 0px 20px;
+    margin: 0 24px;
+    border-top: 1px solid #efefef;
+    position: relative;
+    min-height: 30px;
+}
+
+.commentmedia-item-modal-comments input {
+	background: none;
+	border: none;
+	color: #262626;
+	font-size: 14px;
+	line-height: 18px;
+	outline: none;
+	padding: 5px 0 0 0;
+	height: 18px;
+    width: 45%;
+    overflow: hidden;
+}
+.commentmedia-item-modal-comments textarea {
+	background: none;
+	border: none;
+	color: #262626;
+	font-size: 14px;
+	line-height: 18px;
+	outline: none;
+	padding: 0;
+	resize: none;
+	max-height: 80px;
+    width: 90%;
+    overflow: hidden;
+}
+.commentmedia-item-modal-comments .icons {
+	width: 10%;
+	color: #555;
+	float: right;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	margin-bottom: -30px;
+	text-decoration: none;
+}
+
+.commentmedia-modal-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 335px;
+    height: 100%;
+    background-color: #fff;
+	border-left: 1px solid black;
+}
+.commentmedia-modal-text:hover { /* ie10 transform glitch fix */
+    background-color: #fffffe;
+}
+.commentmedia-modal-text-wrapper {
+	padding: 0px 24px;
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 177px;
+}
+.commentmedia-modal-text span{
+    display: block;
+}
+.commentmedia-modal-text-comments {
+}
+.commentmedia-modal-text-comments.loading {
+	background: url("../images/loading.gif") center center no-repeat;
+	min-height: 100px;
+}
+
+.commentmedia-modal .iconscircle-cross{
+    cursor: pointer;
+    right: -30px;
+    top: -35px;
+    position: absolute;
+    z-index: 1;
+    font-size: 35px;
+    color: white;
+
+}
+
+@media (max-width: 1200px){
+    .commentmedia-modal .container{
+        padding-right: 0;
+        width: 100%;
+    }
+    .commentmedia-item-modal-likes{
+        margin-bottom: 10px;
+    }
+    .commentmedia-modal p{
+        max-height: 100%;
+    }
+}
+@media only screen and (min-width: 940px) and (max-width: 1200px) {/* and (orientation: landscape) { */
+    .commentmedia-modal .container{
+        width: 850px;
+    }
+    .arrow-right{
+    	width: 0;
+        right: -108px;
+    }
+    .arrow-left{
+    	width: 0;
+        left: 20px;
+	}
+}
+
+@media only screen and (max-width: 940px) {/* and (orientation: landscape) { */
+    .commentmedia-wrapper > div{
+        width: 90%;
+    }
+    .arrow-right{
+    	width: 0;
+		right: -84px;
+    }
+    .arrow-left{
+    	width: 0;
+		left: 44px;
+	}
+	.commentmedia-modal-image{
+	    right: 40%;
+	}
+	.commentmedia-modal-text {
+	    width: 40%;
+	}
+}
+
+@media (max-width: 600px){
+    .commentmedia-modal-image{
+		width: 100%;
+		position: relative;
+		height: 90%;
+		display: block;
+        right: auto;
+	}
+	.commentmedia-modal-text{
+	    width: 100%;
+	    position: relative;
+	    top: auto;
+	    right: auto;
+	    display: block;
+	    left: auto;
+        height: auto
+    }
+	.commentmedia-modal-text-wrapper {
+		height: auto;
+		overflow: auto;
+	    position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		bottom: auto;
+    }
+	.commentmedia-item-slide {
+		height: auto;
+		overflow: auto;
+	    position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		bottom: auto;
+	}
+	.commentmedia-wrapper > div {
+	    position: absolute;
+	    width: 100%;
+	    bottom: 0;
+	    top: 52px;
+	    left: 0;
+	    transform: none;
+    }
+    .commentmedia-modal .iconscircle-cross {
+    	right: 10px;
+		top: -44px;
+    }
+    .arrow-right, .arrow-left{
+        display: none;
+	}
+}
+
+.rtl .commentmedia-item-modal-comments .icons {
+    float: left;
+}

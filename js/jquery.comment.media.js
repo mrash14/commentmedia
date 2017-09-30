@@ -1,5 +1,5 @@
 (function ($, undefined) {
-    $.fn.commentmedia = function(param, ...args) {
+    $.fn.commentmedia = function(param, args) {
         this.options = {
             // These are the defaults.
             rtl: false,
@@ -12,7 +12,7 @@
             this.options = $.extend(this.options, param );
         } else {
             try {
-                return this[param](...args);
+                return this[param](args);
             } catch(err) {}
         }
 

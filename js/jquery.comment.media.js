@@ -6,7 +6,11 @@
             text_comment: "Add Comment ...",
             text_phone: "Phone",
             text_name: "Name",
-            text_download: "Download"
+            text_download: "Download",
+            alert_notliked: "Like saving error",
+            alert_commentloaderror: "Error in loading comments",
+            alert_commentsaveerror: "Error in saving comment",
+            alert_commentsaved: "Comment saved!"
         };
         if (param instanceof Object){
             this.options = $.extend(this.options, param );
@@ -48,7 +52,7 @@
                 },
                 error: function(){
                     if($this.data("likeStamp") == loadStamp)
-                        alert("متاسفانه در ثبت درخواست شما خطایی رخداده.");
+                        alert(plugin.options.alert_notliked);
                 },
                 complete: function(){
                     if($this.data("likeStamp") == loadStamp)
@@ -82,6 +86,10 @@
             }
             if ($(this).data("main"))
                 $(".commentmedia-modal-image").css("background-image", "");
+            if ($(window).width() <= 600)
+                $('.commentmedia-modal-image').height(height * $(window).width() / width);
+            else
+                $('.commentmedia-modal-image').height("auto");
         };
         this.showModal = function(that){
             var imagetext = that.find('.info').html(),
@@ -136,7 +144,7 @@
                         modalHtml += "      <input name='comment-name' placeholder='"+ plugin.options.text_name+ "' />";
                         modalHtml += "      <input name='comment-number' placeholder='"+ plugin.options.text_phone+ "' />";
                         modalHtml += "      <input name='item' type='hidden' value='"+item+"' />";
-                        modalHtml += "      <input name='csrfmiddlewaretoken' type='hidden' value='"+$.cookie('csrftoken')+"' />";
+                        // modalHtml += "      <input name='csrftoken' type='hidden' value='"+$.cookie('csrftoken')+"' />";
                         modalHtml += "     </form>";
                     }
                     modalHtml += "     <span class='commentmedia-item-modal-likes'>";
@@ -153,14 +161,12 @@
                     modalHtml += "</div></div></div></div></div>";
                     $('body').append(modalHtml).fadeIn(2500);
                     if (type == "image") {
-                        var tImg = that.find('img').data("main", false)
-                                       .bind('load', plugin.imageLoaded);
-                        if(tImg.data('load'))
-                            tImg.trigger('load');
-
-                        var bgImg = $('<img />').data("main", true)
-                                                .bind('load', plugin.imageLoaded);
-                        bgImg.attr('src', filepath);
+                        $('<img />').data("main", false)
+                                    .bind('load', plugin.imageLoaded)
+                                    .attr('src', that.find('img').attr('src'));
+                        $('<img />').data("main", true)
+                                    .bind('load', plugin.imageLoaded)
+                                    .attr('src', filepath);
                     }
                     $('.commentmedia-modal-text, .commentmedia-modal-image .img').on("swapleft", function(){
                         $(".commentmedia-navigate.arrow-left").trigger("click");
@@ -190,7 +196,7 @@
                             },
                             error: function(){
                                 if($(".commentmedia-modal-text-comments.loading").data("loadStamp") == loadStamp)
-                                    alert("متاسفانه در بارگزاری نظرات خطایی رخداده.");
+                                    alert(plugin.options.alert_commentloaderror);
                             },
                             complete: function(){
                                 if($(".commentmedia-modal-text-comments.loading").data("loadStamp") == loadStamp){
@@ -219,14 +225,14 @@
                                 if($this.data("timeStamp") == loadStamp){
                                     if(data == "ok"){
                                         $(".commentmedia-item-modal-comments input:visible, .commentmedia-item-modal-comments textarea:visible").val("")
-                                        $(".commentmedia-item-modal-comments").prepend($("<b class='remove-"+ loadStamp+ "' style='color: red'>").html("نظر شما با موفقیت ثبت شد."));
+                                        $(".commentmedia-item-modal-comments").prepend($("<b class='remove-"+ loadStamp+ "' style='color: red'>").html(plugin.options.alert_commentsaved));
                                         setTimeout(function(){ $(".remove-"+loadStamp).slideUp("slow", function(){$(this).remove();}); }, 5000);
                                     }
                                 }
                             },
                             error: function(){
                                 if($this.data("timeStamp") == loadStamp)
-                                    alert("متاسفانه در ثبت نظر شما خطایی رخداده.");
+                                    alert(plugin.options.alert_commentsaveerror);
                             },
                             complete: function(){
                                 if($this.data("timeStamp") == loadStamp)
@@ -275,7 +281,21 @@
             if ($('.commentmedia-scrollbox').length) {
                 maxHeight = $(window).height()-52;
                 $('.commentmedia-scrollbox').css('height',maxHeight+'px');
-                $('.instagram-carousel.active').find("img").trigger("load");
+
+                src = $(".commentmedia-modal-image").css("background-image");
+                src = /^url\((['"]?)(.*)\1\)$/.exec(src);
+                src = src? src[2]: false;
+                main = false;
+                if (!src){
+                    src = $(".commentmedia-scrollbox .img").css("background-image");
+                    src = /^url\((['"]?)(.*)\1\)$/.exec(src);
+                    src = src? src[2]: false;
+                    main = true;
+                }
+                if (src)
+                    $('<img />').data("main", main)
+                                .bind('load', plugin.imageLoaded)
+                                .attr('src', src);
             }
         };
 
@@ -335,9 +355,9 @@
                         plugin.removeModal();
                         break;
                         
-                    default: return; // exit this handler for other keys
+                    default: return;
                 }
-                e.preventDefault(); // prevent the default action (scroll / move caret)
+                e.preventDefault();
             }
         });
         if (window.location.hash) {
@@ -354,9 +374,6 @@
             else
                 $(this).find('.icon-heart').removeClass('liked');
 
-            $(this).find('img').on('load', function(e){
-                $(this).data("load", true);
-            });
             $(this).on("click", function(e){
                 //scrollTo = $('body').scrollTop();
                 $('body').addClass('noscroll')

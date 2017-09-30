@@ -32,6 +32,7 @@
     display: block;
     margin-top: -64px;
     text-shadow: 1px 1px 3px black;
+    position: absolute;
 }
 .commentmedia-navigate.arrow-right {
     right: -128px;
